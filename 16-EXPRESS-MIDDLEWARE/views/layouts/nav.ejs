@@ -1,0 +1,27 @@
+<nav class="max-w-4xl mx-auto">
+    <div class="bg-white/80 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-sm border border-slate-200/80 flex flex-wrap items-center justify-between gap-4">
+        <!-- Logo / Brand -->
+        <a href="/" class="flex items-center gap-2.5 font-bold text-slate-800 text-lg tracking-tight hover:opacity-90 transition-opacity">
+            <span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-400 flex items-center justify-center text-white shadow-sm font-extrabold text-sm">
+                JS
+            </span>
+            <span>Express<span class="text-amber-500 font-extrabold">EJS</span></span>
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="flex flex-wrap items-center gap-2">
+            <a href="/" 
+               class="px-4 py-2 text-sm font-semibold rounded-xl transition-all duration-200 <%= (typeof title !== 'undefined' && title === 'Halaman Index') ? 'bg-amber-500 text-white shadow-md shadow-amber-500/20' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' %>">
+                Home
+            </a>
+            <a href="/about" 
+               class="px-4 py-2 text-sm font-semibold rounded-xl transition-all duration-200 <%= (typeof title !== 'undefined' && title === 'Halaman About') ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' %>">
+                About
+            </a>
+            <a href="/contact" 
+               class="px-4 py-2 text-sm font-semibold rounded-xl transition-all duration-200 <%= (typeof title !== 'undefined' && title === 'Halaman Contact') ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' %>">
+                Contact
+            </a>
+        </div>
+    </div>
+</nav>

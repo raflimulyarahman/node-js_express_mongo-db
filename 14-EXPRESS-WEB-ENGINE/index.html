@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Index</title>
+    <!-- Tailwind CSS v4 Browser CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-slate-100 text-slate-800 min-h-screen p-6 sm:p-12">
+    <div class="max-w-4xl mx-auto">
+        <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-sm border border-slate-200">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-amber-500 mb-4 tracking-tight">Index Saya</h1>
+            <p class="text-lg sm:text-xl text-slate-600 mb-6 leading-relaxed">
+                Selamat datang di halaman Index! Ini adalah contoh halaman yang dibuat menggunakan Tailwind CSS v4.
+            </p>
+            <hr class="my-6 border-slate-200">
+            <p class="text-sm text-slate-500 mb-6">Halaman ini disajikan secara dinamis oleh Web Server Express JS.</p>
+            
+            <!-- Tombol Navigasi Berjajar Menyamping (Horizontal) -->
+            <div class="flex flex-wrap items-center gap-3">
+                <button onclick="location.href='/'" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-lg shadow-sm transition-colors cursor-pointer">Home</button>
+                <button onclick="location.href='/about'" class="px-5 py-2.5 border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium rounded-lg transition-colors cursor-pointer">About</button>
+                <button onclick="location.href='/contact'" class="px-5 py-2.5 border border-emerald-600 text-emerald-600 hover:bg-emerald-50 font-medium rounded-lg transition-colors cursor-pointer">Contact</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
