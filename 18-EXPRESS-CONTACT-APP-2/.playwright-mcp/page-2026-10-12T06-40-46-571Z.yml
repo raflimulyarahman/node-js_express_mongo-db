@@ -1,0 +1,53 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - link "@ ContactApp" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e6]: "@"
+          - generic [ref=e8]: ContactApp
+        - generic [ref=e9]:
+          - link "Home" [ref=e10] [cursor=pointer]:
+            - /url: /
+          - link "About" [ref=e11] [cursor=pointer]:
+            - /url: /about
+          - link "Contact" [ref=e12] [cursor=pointer]:
+            - /url: /contact
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e17]:
+        - paragraph [ref=e18]: Express Contact App
+        - heading "Halo, Rafli. Selamat datang." [level=1] [ref=e19]: Halo, Rafli.Selamat datang.
+        - paragraph [ref=e20]: Ruang sederhana untuk belajar membangun web server dengan Node.js, Express, dan template EJS yang modular.
+        - generic [ref=e21]:
+          - link "Lihat daftar kontak" [ref=e22] [cursor=pointer]:
+            - /url: /contact
+          - link "Kenalan lebih dekat" [ref=e23] [cursor=pointer]:
+            - /url: /about
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]: "01"
+          - heading "Struktur rapi" [level=2] [ref=e27]
+          - paragraph [ref=e28]: Layout dan halaman dipisahkan agar mudah dikembangkan.
+        - generic [ref=e29]:
+          - generic [ref=e30]: "02"
+          - heading "Data dinamis" [level=2] [ref=e31]
+          - paragraph [ref=e32]: Data kontak dirender langsung dari route Express.
+        - generic [ref=e33]:
+          - generic [ref=e34]: "03"
+          - heading "Siap dipelajari" [level=2] [ref=e35]
+          - paragraph [ref=e36]: Contoh kecil yang fokus pada konsep inti web server.
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - paragraph [ref=e39]: Mulai eksplorasi
+          - heading "Ingin melihat siapa saja di dalamnya?" [level=2] [ref=e40]
+          - paragraph [ref=e41]: Buka halaman contact untuk melihat data yang dikirim dari server.
+        - link "Buka contact" [ref=e42] [cursor=pointer]:
+          - /url: /contact
+  - contentinfo [ref=e43]:
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e47]: Express Web Server
+        - generic [ref=e48]: "|"
+        - generic [ref=e49]: Node.js + EJS Layouts
+      - paragraph [ref=e50]: © 2026 Belajar Node.js. All rights reserved.
