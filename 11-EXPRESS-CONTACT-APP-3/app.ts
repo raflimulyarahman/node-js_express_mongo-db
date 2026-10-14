@@ -115,7 +115,7 @@ app.post('/contact/update', [
     });
   }
   await updateContact(req.body);
-  req.flash('msg', 'Data contact berhasil diubah!');
+  req.flash('msg', 'Data kontak berhasil diubah!');
   res.redirect('/contact');
 });
 
@@ -128,7 +128,7 @@ app.post('/contact/delete/:nama', async (req: Request, res: Response) => {
     });
   }
   await deleteContact(nama);
-  req.flash('msg', 'Data contact berhasil dihapus!');
+  req.flash('msg', 'Yes! Data berhasil dihapus, jangan lupa move on ya! ^_^');
   res.redirect('/contact');
 });
 

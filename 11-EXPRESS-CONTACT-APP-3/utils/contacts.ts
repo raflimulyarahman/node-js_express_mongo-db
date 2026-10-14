@@ -33,7 +33,7 @@ const saveContacts = async (contacts: any) => {
 //Menambahkan data contact baru 
 export const addContact = async (contact: any) => {
   const contacts = await loadContacts();
-  contact.nama = contact.nama.replace(/\b\w/g, (c: any) => c.toUpperCase()).trim();
+  contact.nama = contact.nama.replace(/\b\w/g, (contact: any) => contact.toUpperCase()).trim();
   contacts.push(contact);
   await saveContacts(contacts);
 }
@@ -52,7 +52,7 @@ export const updateContact = async (contact: any) => {
 //Menghapus contact berdasarkan nama
 export const deleteContact = async (nama: string) => {
   const contacts = await loadContacts();
-  const filtered = contacts.filter((c: { nama: string; }) => c.nama.toLowerCase() !== nama.toLowerCase());
+  const filtered = contacts.filter((contact: { nama: string; }) => contact.nama.toLowerCase() !== nama.toLowerCase());
   await saveContacts(filtered);
 }
 
