@@ -1,6 +1,10 @@
 import express, { type Express, type NextFunction, type Request, type Response } from 'express';
 import expressLayouts from 'express-ejs-layouts';
-import { loadContact, findContact } from './utils/contacts.ts';
+import { loadContacts, findContact, addContact, cekDuplikat } from './utils/contacts.ts';
+import { body, validationResult, check } from 'express-validator'; // Untuk validasi
+import cookieParser from 'cookie-parser';
+import flash from 'connect-flash';
+import session from 'express-session';
 
 const app: Express = express();
 const port = 3000;
@@ -8,7 +12,16 @@ const port = 3000;
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.set('layout', 'layouts/main-layout');
-app.use(express.static('public'))
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser('secret'));
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true,
+}));
+app.use(flash());
 
 app.get('/', (req: Request, res: Response) => {
   res.render('index', {
@@ -24,10 +37,11 @@ app.get('/about', (req: Request, res: Response) => {
 });
 
 app.get('/contact', async (req: Request, res: Response) => {
-  const contacts = await loadContact();
+  const contacts = await loadContacts();
   res.render('contact', {
     title: 'Halaman Contact',
     contacts,
+    msg: req.flash('msg')
   });
 });
 
@@ -36,6 +50,34 @@ app.get('/contact/add', (req: Request, res: Response) => {
     title: 'Halaman Tambah Contact',
     layout: 'layouts/main-layout',
   });
+});
+
+app.post('/contact', [
+  body('nama').custom(async (value) => {
+    const duplikat = await cekDuplikat(value);
+    if (duplikat) {
+      throw new Error('Nama udah ada yang punya, mundur pelan-pelan!');
+    }
+    return true;
+  }),
+  check('email', 'Email isi yang bener!').isEmail(),
+  check('noHp', 'Ngisi nomor hp aja ngga bisa, apalagi ngisi hati dia :v').isMobilePhone('id-ID'),
+], async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render('add-contact', {
+      title: 'Halaman Tambah Contact',
+      layout: 'layouts/main-layout',
+      errors: errors.array(),
+      oldInput: req.body,
+    });
+  } else {
+    req.flash('msg', 'Yes! Udah di save, jangan lupa chattan ya ^_^');
+    await addContact(req.body);
+    res.redirect('/contact');
+  }
+
+
 });
 
 app.get('/contact/:nama', async (req: Request, res: Response) => {

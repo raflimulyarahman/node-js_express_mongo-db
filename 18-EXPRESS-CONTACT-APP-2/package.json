@@ -1,9 +1,16 @@
 {
   "type": "module",
   "dependencies": {
+    "@types/connect-flash": "^0.0.40",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express-session": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
     "ejs": "^7.0.1",
     "express": "^5.3.0",
     "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
     "morgan": "^1.12.1"
   },
   "devDependencies": {

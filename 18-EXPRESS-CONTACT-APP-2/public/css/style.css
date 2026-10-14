@@ -11,3 +11,60 @@
                 radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.08) 0px, transparent 50%),
                 radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
         }
+
+        /* Flash message entrance / exit */
+        @keyframes flash-in {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+                filter: blur(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes flash-out {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-8px);
+                filter: blur(6px);
+            }
+        }
+
+        @keyframes flash-progress {
+            from {
+                transform: scaleX(1);
+            }
+            to {
+                transform: scaleX(0);
+            }
+        }
+
+        .flash-in {
+            animation: flash-in 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .flash-out {
+            animation: flash-out 320ms cubic-bezier(0.4, 0, 1, 1) both;
+        }
+
+        .flash-progress {
+            transform-origin: left;
+            animation: flash-progress 6000ms linear forwards;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .flash-in,
+            .flash-out,
+            .flash-progress {
+                animation: none;
+            }
+        }
