@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/express": "^5.0.6",
+    "@types/express-ejs-layouts": "^2.5.4",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^18.0.7",
+    "express-session": "^1.19.0",
+    "mongoose": "^9.11.2"
+  },
+  "name": "12-mongodb-contact-app",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch app.ts",
+    "build": "tsc",
+    "start": "bun app.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/connect-flash": "^0.0.40",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express-session": "^1.19.0"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  }
+}

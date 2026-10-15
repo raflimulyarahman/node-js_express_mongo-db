@@ -9,12 +9,14 @@ import session from 'express-session';
 const app: Express = express();
 const port = 3000;
 
+//Setup EJS
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.set('layout', 'layouts/main-layout');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
+//Konfigurasi flash & session
 app.use(cookieParser('secret'));
 app.use(session({
   secret: 'secret',
@@ -132,27 +134,29 @@ app.post('/contact/delete/:nama', async (req: Request, res: Response) => {
   res.redirect('/contact');
 });
 
+//Halaman detail kontak
 app.get('/contact/:nama', async (req: Request, res: Response) => {
-  // req.params.nama bertipe: string | string[] | undefined
-  const namaParam = req.params.nama;
+  const rawNama = req.params.nama;
 
-  // Normalisasi: kalo bentuknya array, ambil elemen pertama [0] biar jadi string
-  // Kalo bukan array, pakai langsung (string atau undefined)
-  const nama = Array.isArray(namaParam) ? namaParam[0] : namaParam;
+  // Normalisasi jika bentuknya array
+  const nama = Array.isArray(rawNama) ? rawNama[0] : rawNama;
 
-  // Guard: pastikan nama ada & valid (bukan undefined/kosong) sebelum dipakai findContact()
+  // Guard jika tidak ada
   if (!nama) {
     return res.status(404).render('404', {
       title: 'Halaman Tidak Ditemukan',
     });
   }
 
+  // Sekarang 'contact' hanya dideklarasikan sekali untuk menampung data hasil database
   const contact = await findContact(nama);
   res.render('detail', {
     title: 'Halaman Detail Contact',
     contact,
   });
 });
+
+
 
 app.use((req: Request, res: Response) => {
   res.status(404).render('404', {
