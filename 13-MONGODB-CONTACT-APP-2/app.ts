@@ -128,8 +128,10 @@ app.get('/contact/edit/:nama', async (req, res) => {
 //Proses update data kontak
 app.post('/contact/update', [
   body('nama').custom(async (value, { req }) => {
-    if (value.toLowerCase() === String(req.body.oldNama).toLowerCase()) return true;
-    const duplikat = await Contact.findOne({nama: value});
+    const duplikat = await Contact.findOne({
+      nama: value,
+      _id: { $ne: req.body.id },
+    });
     if (duplikat) {
       throw new Error('Nama udah ada yang punya, mundur pelan-pelan!');
     }
@@ -145,10 +147,18 @@ app.post('/contact/update', [
       contact: req.body,
       errors: errors.array(),
     });
+  } else {
+    await Contact.updateOne(
+      { _id: req.body.id },
+      {
+        nama: req.body.nama,
+        email: req.body.email,
+        noHp: req.body.noHp,
+      }
+    );
+    req.flash('msg', 'Data kontak berhasil diubah!');
+    res.redirect('/contact');
   }
-  await updateContact(req.body);
-  req.flash('msg', 'Data kontak berhasil diubah!');
-  res.redirect('/contact');
 });
 
 // Routing hapus data kontak
