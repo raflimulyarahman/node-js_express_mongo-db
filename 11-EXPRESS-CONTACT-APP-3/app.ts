@@ -54,6 +54,7 @@ app.get('/contact/add', (req: Request, res: Response) => {
   });
 });
 
+//Proses tambah data kontak
 app.post('/contact', [
   body('nama').custom(async (value) => {
     const duplikat = await cekDuplikat(value);
@@ -121,6 +122,7 @@ app.post('/contact/update', [
   res.redirect('/contact');
 });
 
+//Routing hapus data kontak
 app.post('/contact/delete/:nama', async (req: Request, res: Response) => {
   const nama = String(req.params.nama);
   const contact = await findContact(nama);
